@@ -1,9 +1,11 @@
 // código basado en
 // https://observablehq.com/@piyush078/03-the-numbers-decide-the-paths-hybrid-charts-2
 
-const width = 43 * 21;
-const height = 43 * 9;
-const baseX = width * 0.33;
+const ZOOM = 25;
+
+const width = ZOOM * 10;
+const height = ZOOM * 9;
+const baseX = width * 0.5;
 const baseY = height * 0.5;
 const sizeOfData = 5;
 const keys = ["PAC", "SHO", "PAS", "DRI", "DEF", "PHY"];
@@ -161,33 +163,6 @@ const createAxes = (svg) => {
     .attr("text-anchor", "middle");
 };
 
-const createLabels = (svg, data) => {
-  // Draw Labels
-  const labels = svg
-    .selectAll("g.labels")
-    .data(data)
-    .enter()
-    .append("g")
-    .classed("labels", true)
-    .attr(
-      "transform",
-      (d, i) => `translate(${width * 0.7}, ${height - margin.b - i * 25})`
-    );
-  labels
-    .append("rect")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", 25)
-    .attr("height", 10)
-    .style("fill", (d, i) => "#e605ff");
-  labels
-    .append("text")
-    .attr("x", 35)
-    .attr("y", 10)
-    .style("font-size", "0.9rem")
-    .text((d) => d);
-};
-
 const getPositionColor = (position) => {
   if (position in ["CB", "RB", "LB", "LWB", "RWB"])
     return positionColors.defense;
@@ -203,14 +178,14 @@ const getRatingColor = (rating) => {
 };
 
 const createSpiderChart = async (params) => {
-  // define params for the chart
-
+  // get all params
   const { data } = params;
   const preparedData = prepareData(data);
   const scale = d3.scaleLinear().domain([0, 100]).range([0, sideLength]);
   const positionColor = getPositionColor(data.POSITION);
   const ratingColor = getRatingColor(parseInt(data.RATING, 10));
 
+  // draw spiderchart
   const body = d3.select("body");
   const svg = body
     .append("svg")
@@ -220,5 +195,4 @@ const createSpiderChart = async (params) => {
   createPolygon(svg);
   createChart(svg, preparedData, scale, positionColor);
   createAxes(svg);
-  createLabels(svg, preparedData);
 };
