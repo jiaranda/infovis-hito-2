@@ -80,9 +80,21 @@ body {
   margin-left: 10px;
   margin-right: 10px;
   text-align: justify;
-  padding: 10px;
-  min-width: 400px;
+  padding: 0;
   flex: 1 1 25%;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-container {
+  height: 180px;
+}
+
+.card-data {
+  height: 90px;
 }
 
 .subcontent .title {

@@ -1,7 +1,7 @@
 // código basado en
 // https://observablehq.com/@piyush078/03-the-numbers-decide-the-paths-hybrid-charts-2
 
-const ZOOM = 25;
+const ZOOM = 20;
 
 const width = ZOOM * 9;
 const height = ZOOM * 9;
@@ -181,14 +181,13 @@ const createSpiderChart = async (params) => {
   const preparedData = prepareData(data);
   const scale = d3.scaleLinear().domain([0, 100]).range([0, sideLength]);
   const positionColor = getPositionColor(data.POSITION);
-  const ratingColor = getRatingColor(parseInt(data.RATING, 10));
 
   // draw spiderchart
   const svg = baseElement
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .style("background", ratingColor);
+    .style("background", "transparent");
 
   // add white circle
   svg
