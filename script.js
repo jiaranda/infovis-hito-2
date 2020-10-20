@@ -1,8 +1,6 @@
 const main = async () => {
-  const rawData = await loadData("data/fifa_20_data.csv");
-  const data = prepareData(rawData);
-  console.log(data);
-  await createSpiderChart({ data });
+  const data = await loadData("data/fifa_20_data.csv");
+  await createSpiderChart({ data: data[1] });
 };
 
 main().catch((err) => console.error(err));
