@@ -3,7 +3,7 @@
 
 const ZOOM = 25;
 
-const width = ZOOM * 10;
+const width = ZOOM * 9;
 const height = ZOOM * 9;
 const baseX = width * 0.5;
 const baseY = height * 0.5;
@@ -192,6 +192,13 @@ const createSpiderChart = async (params) => {
     .attr("width", width)
     .attr("height", height)
     .style("background", ratingColor);
+
+  svg
+    .append("circle")
+    .attr("cx", baseX)
+    .attr("cy", baseY)
+    .attr("r", sideLength * 1.5)
+    .attr("fill", "#FFFFFF");
   createPolygon(svg);
   createChart(svg, preparedData, scale, positionColor);
   createAxes(svg);
