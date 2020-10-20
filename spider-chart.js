@@ -11,8 +11,15 @@ const bordersQty = keys.length;
 const sideLength = height * 0.5 - 40;
 const borderDistance = sideLength / bordersQty;
 const margin = { l: 60, r: 30, t: 30, b: 60 };
-const cardColors = {
-  gold: "#FFD700",
+const ratingColors = {
+  gold: "#f7d320",
+  silver: "#cccccc",
+  bronze: "#db9c1f",
+};
+const positionColors = {
+  defense: "#6e7eff",
+  mid: "#6eff84",
+  front: "#ff4747",
 };
 
 const prepareData = (data) => {
@@ -28,9 +35,7 @@ const prepareData = (data) => {
 };
 
 const loadData = async (path) => {
-  return await d3.csv(path, (rawData) => {
-    return prepareData(rawData);
-  });
+  return await d3.csv(path);
 };
 
 const degToRadians = (angle) => {
@@ -81,8 +86,8 @@ const createBlocks = (svg, paths) => {
     .classed("block", true)
     .append("path")
     .attr("d", (d, i) => paths[i])
-    .style("stroke", "rgba(0,0,0,0.4)")
-    .style("fill", (d, i) => (i ? "transparent" : "rgba(219,219,205,0.2)"));
+    .style("stroke", "rgba(0,0,0,0.2)")
+    .style("fill", (d, i) => (i ? "transparent" : "#dbdbcd"));
   return blocks;
 };
 
@@ -92,7 +97,7 @@ const createDiagonal = (svg) => {
     diagonal
       .append("path")
       .attr("d", pathToPoint(i, 0, i, sideLength))
-      .style("stroke", "rgba(0,0,0,0.4)");
+      .style("stroke", "rgba(0,0,0,0.2)");
   });
   return diagonal;
 };
@@ -110,7 +115,7 @@ const getNextElement = (data, i) => {
   return data[i + 1];
 };
 
-const createChart = (svg, data, scale) => {
+const createChart = (svg, data, scale, fillColor) => {
   svg
     .selectAll("g.spiders")
     .data([data])
@@ -118,9 +123,8 @@ const createChart = (svg, data, scale) => {
     .append("g")
     .classed("spiders", true)
     .append("path")
-    .style("fill", (d, i) => "#e605ff")
-    .style("stroke", (d, i) => "#253df5")
-    .style("stroke-width", "2px")
+    .style("fill", (d, i) => fillColor)
+    .style("stroke-width", "0px")
     .attr(
       "d",
       (d, i) =>
@@ -184,20 +188,37 @@ const createLabels = (svg, data) => {
     .text((d) => d);
 };
 
+const getPositionColor = (position) => {
+  if (position in ["CB", "RB", "LB", "LWB", "RWB"])
+    return positionColors.defense;
+  if (position in ["CM", "CAM", "CDM", "LM", "RM"]) return positionColors.mid;
+
+  return positionColors.front;
+};
+
+const getRatingColor = (rating) => {
+  if (75 <= rating && rating <= 99) return ratingColors.gold;
+  if (65 <= rating && rating < 75) return ratingColors.silver;
+  if (1 <= rating && rating < 65) return ratingColors.bronze;
+};
+
 const createSpiderChart = async (params) => {
   // define params for the chart
 
   const { data } = params;
+  const preparedData = prepareData(data);
   const scale = d3.scaleLinear().domain([0, 100]).range([0, sideLength]);
+  const positionColor = getPositionColor(data.POSITION);
+  const ratingColor = getRatingColor(parseInt(data.RATING, 10));
 
   const body = d3.select("body");
   const svg = body
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .style("background", cardColors.gold);
+    .style("background", ratingColor);
   createPolygon(svg);
-  createChart(svg, data, scale);
+  createChart(svg, preparedData, scale, positionColor);
   createAxes(svg);
-  createLabels(svg, data);
+  createLabels(svg, preparedData);
 };
