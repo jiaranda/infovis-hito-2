@@ -7,12 +7,10 @@ const width = ZOOM * 9;
 const height = ZOOM * 9;
 const baseX = width * 0.5;
 const baseY = height * 0.5;
-const sizeOfData = 5;
 const keys = ["PAC", "SHO", "PAS", "DRI", "DEF", "PHY"];
 const bordersQty = keys.length;
 const sideLength = height * 0.5 - 40;
 const borderDistance = sideLength / bordersQty;
-const margin = { l: 60, r: 30, t: 30, b: 60 };
 const ratingColors = {
   gold: "#f7d320",
   silver: "#cccccc",
@@ -179,20 +177,20 @@ const getRatingColor = (rating) => {
 
 const createSpiderChart = async (params) => {
   // get all params
-  const { data } = params;
+  const { baseElement, data } = params;
   const preparedData = prepareData(data);
   const scale = d3.scaleLinear().domain([0, 100]).range([0, sideLength]);
   const positionColor = getPositionColor(data.POSITION);
   const ratingColor = getRatingColor(parseInt(data.RATING, 10));
 
   // draw spiderchart
-  const body = d3.select("body");
-  const svg = body
+  const svg = baseElement
     .append("svg")
     .attr("width", width)
     .attr("height", height)
     .style("background", ratingColor);
 
+  // add white circle
   svg
     .append("circle")
     .attr("cx", baseX)
