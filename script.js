@@ -3,6 +3,7 @@ const getCards = async ({ data, baseElement }) => {
   const t0 = Date.now();
   for (let i = 0; i < data.length - 1; i++) {
     await createCard({ data: data[i], baseElement, id: i });
+    i += SKIP;
   }
   const t1 = Date.now();
   console.log(t1 - t0);

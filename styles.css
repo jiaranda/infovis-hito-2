@@ -20,35 +20,35 @@ body {
   margin: 0px;
 }
 
+#logo {
+  width: 80%;
+  height: auto;
+  margin-top: 10px;
+}
+
 #main-container {
-  display: grid;
-  grid-template-areas:
-    "title"
-    "content"
-    "footer";
+  display: flex;
+  flex-direction: row;
 }
 
 #title-container {
   text-align: center;
-  height: 79.88px;
-  width: 100%;
+  width: 5%;
+  height: inherit;
   background: var(--main-background-base);
   background: var(--main-background-gradient);
   color: #fff;
-  grid-area: title;
-  position: fixed;
-  top: 0;
 }
 
 #content-container {
-  grid-area: content;
+  grid-area: main;
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
   padding: 0px;
-  width: 100%;
+  width: 95%;
   box-shadow: black;
   background-color: #f5f5f5;
-  margin-top: 119.88px;
+  margin-top: 40px;
   margin-bottom: 40px;
 }
 
