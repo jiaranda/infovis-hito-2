@@ -162,9 +162,12 @@ const createAxes = (svg) => {
 };
 
 const getPositionColor = (position) => {
-  if (position in ["CB", "RB", "LB", "LWB", "RWB"])
+  console.log("---------------");
+  console.log(position);
+  if (["CB", "RB", "LB", "LWB", "RWB"].includes(position))
     return positionColors.defense;
-  if (position in ["CM", "CAM", "CDM", "LM", "RM"]) return positionColors.mid;
+  if (["CM", "CAM", "CDM", "LM", "RM"].includes(position))
+    return positionColors.mid;
 
   return positionColors.front;
 };
@@ -181,6 +184,8 @@ const createSpiderChart = async (params) => {
   const preparedData = prepareData(data);
   const scale = d3.scaleLinear().domain([0, 100]).range([0, sideLength]);
   const positionColor = getPositionColor(data.POSITION);
+  console.log(data.POSITION);
+  console.log(positionColor);
 
   // draw spiderchart
   const svg = baseElement

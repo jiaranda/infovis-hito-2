@@ -1,5 +1,4 @@
-const createCard = ({ data, baseElement, id }) => {
-  console.log(data);
+const createCard = async ({ data, baseElement, id }) => {
   const ratingColor = getRatingColor(parseInt(data.RATING, 10));
   const card = baseElement
     .append("div")
@@ -7,7 +6,11 @@ const createCard = ({ data, baseElement, id }) => {
     .attr("id", `card-${id}`)
     .style("background", ratingColor);
 
-  card.append("div").attr("class", "card-data");
+  const cardData = card.append("div").attr("class", "card-data");
 
-  card.append("div").attr("class", "chart-container");
+  const chartContiner = card.append("div").attr("class", "chart-container");
+  await createSpiderChart({
+    data,
+    baseElement: chartContiner,
+  });
 };
