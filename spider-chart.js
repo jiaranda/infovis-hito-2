@@ -1,7 +1,7 @@
 // código basado en
 // https://observablehq.com/@piyush078/03-the-numbers-decide-the-paths-hybrid-charts-2
 
-const ZOOM = 20;
+const ZOOM = 23;
 
 const width = ZOOM * 9;
 const height = ZOOM * 9;
@@ -86,7 +86,7 @@ const createBlocks = (svg, paths) => {
     .classed("block", true)
     .append("path")
     .attr("d", (d, i) => paths[i])
-    .style("stroke", "rgba(0,0,0,0.2)")
+    .style("stroke", "rgba(0,0,0,0.1)")
     .style("fill", (d, i) => (i ? "transparent" : "#dbdbcd"));
   return blocks;
 };
@@ -97,7 +97,7 @@ const createDiagonal = (svg) => {
     diagonal
       .append("path")
       .attr("d", pathToPoint(i, 0, i, sideLength))
-      .style("stroke", "rgba(0,0,0,0.2)");
+      .style("stroke", "rgba(0,0,0,0.1)");
   });
   return diagonal;
 };
@@ -162,8 +162,6 @@ const createAxes = (svg) => {
 };
 
 const getPositionColor = (position) => {
-  console.log("---------------");
-  console.log(position);
   if (["CB", "RB", "LB", "LWB", "RWB"].includes(position))
     return positionColors.defense;
   if (["CM", "CAM", "CDM", "LM", "RM"].includes(position))
@@ -173,9 +171,9 @@ const getPositionColor = (position) => {
 };
 
 const getRatingColor = (rating) => {
-  if (75 <= rating && rating <= 99) return ratingColors.gold;
-  if (65 <= rating && rating < 75) return ratingColors.silver;
-  if (1 <= rating && rating < 65) return ratingColors.bronze;
+  if (75 <= rating && rating <= 99) return "gold";
+  if (65 <= rating && rating < 75) return "silver";
+  if (1 <= rating && rating < 65) return "bronze";
 };
 
 const createSpiderChart = async (params) => {
@@ -184,8 +182,6 @@ const createSpiderChart = async (params) => {
   const preparedData = prepareData(data);
   const scale = d3.scaleLinear().domain([0, 100]).range([0, sideLength]);
   const positionColor = getPositionColor(data.POSITION);
-  console.log(data.POSITION);
-  console.log(positionColor);
 
   // draw spiderchart
   const svg = baseElement
