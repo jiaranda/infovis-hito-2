@@ -181,7 +181,6 @@ const getRatingColor = (rating) => {
 const createSpiderChart = async (params) => {
   // get all params
   const { baseElement, data } = params;
-  console.log(data);
   const preparedData = prepareData(data);
   const scale = d3.scaleLinear().domain([0, 100]).range([0, sideLength]);
   const positionColor = getPositionColor(data.POSITION);

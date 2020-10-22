@@ -6,12 +6,10 @@ const getCards = async ({ data, baseElement }) => {
     i += SKIP;
   }
   const t1 = Date.now();
-  console.log(t1 - t0);
 };
 
 const calculateMeans = async ({ data }) => {
   const n = data.length;
-  console.log(n);
   const res = {
     PACE: 0,
     SHOOTING: 0,
