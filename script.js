@@ -9,10 +9,19 @@ const getCards = async ({ data, baseElement }) => {
   console.log(t1 - t0);
 };
 
+const getSummary = async ({ data }) => {
+  const baseElement = d3.select("#summary");
+  await createSpiderChart({
+    data,
+    baseElement,
+  });
+};
+
 const main = async () => {
   const data = await loadData("data/fifa_20_data.csv");
-  const baseElement = d3.select(".cards-container");
+  const baseElement = d3.select("#cards-container");
   await getCards({ data, baseElement });
+  await getSummary({ data: data[0] });
 };
 
 main().catch((err) => console.error(err));
