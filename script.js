@@ -9,10 +9,35 @@ const getCards = async ({ data, baseElement }) => {
   console.log(t1 - t0);
 };
 
+const calculateMeans = async ({ data }) => {
+  const n = data.length;
+  console.log(n);
+  const res = {
+    PACE: 0,
+    SHOOTING: 0,
+    PASSING: 0,
+    DRIBBLING: 0,
+    DEFENDING: 0,
+    PHYSICAL: 0,
+    POSITION: "SUMMARY",
+  };
+  data.forEach((player) => {
+    res.PACE += player.PACE / n;
+    res.SHOOTING += player.SHOOTING / n;
+    res.PASSING += player.PASSING / n;
+    res.DRIBBLING += player.DRIBBLING / n;
+    res.DEFENDING += player.DEFENDING / n;
+    res.PHYSICAL += player.PHYSICAL / n;
+  });
+
+  return res;
+};
+
 const getSummary = async ({ data }) => {
-  const baseElement = d3.select("#summary");
+  const baseElement = d3.select("#summary-chart");
+  const means = await calculateMeans({ data });
   await createSpiderChart({
-    data,
+    data: means,
     baseElement,
   });
 };
@@ -21,7 +46,7 @@ const main = async () => {
   const data = await loadData("data/fifa_20_data.csv");
   const baseElement = d3.select("#cards-container");
   await getCards({ data, baseElement });
-  await getSummary({ data: data[0] });
+  await getSummary({ data });
 };
 
 main().catch((err) => console.error(err));

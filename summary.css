@@ -1,0 +1,35 @@
+#summary {
+  grid-area: summary;
+  height: 100%;
+  max-height: 15%;
+  display: grid;
+  grid-template-columns: 5% 50% auto 207px 5%;
+  grid-template-areas: ". search data chart .";
+}
+
+#search-bar {
+  background-color: #fff;
+  /* box-shadow: 0px 0px 22px 3px rgba(0, 0, 0, 0.36); */
+  box-shadow: 0 4px 9px 0 rgba(15, 15, 17, 0.1);
+  grid-area: search;
+  margin-right: 15px;
+}
+
+#summary-data {
+  background-color: #fff;
+  /* box-shadow: 0px 0px 22px 3px rgba(0, 0, 0, 0.36); */
+  box-shadow: 0 4px 9px 0 rgba(15, 15, 17, 0.1);
+  grid-area: data;
+  margin-right: 15px;
+}
+
+#summary-chart {
+  background-color: #fff;
+  /* box-shadow: 0px 0px 22px 3px rgba(0, 0, 0, 0.36); */
+  box-shadow: 0 4px 9px 0 rgba(15, 15, 17, 0.1);
+  grid-area: chart;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}

@@ -19,7 +19,7 @@ body {
   margin: 0px;
   display: grid;
   height: 100vh;
-  grid-template-columns: 10% 5% 80% 5%;
+  grid-template-columns: 6% 5% 84% 5%;
   grid-template-rows: 25% 75%;
   grid-template-areas:
     "nav summary summary summary"
@@ -30,119 +30,14 @@ body {
   background: var(--main-background-base);
   background: var(--main-background-gradient);
   grid-area: nav;
+  vertical-align: center;
 }
 
 #logo {
   width: 80%;
   height: auto;
   margin-top: 10px;
-}
-
-#summary {
-  grid-area: summary;
-  height: 100%;
-  max-height: 15%;
-}
-
-#cards-container {
-  background-color: #fff;
-  grid-area: content;
-  padding: 0;
-  box-shadow: 0 4px 9px 0 rgba(15, 15, 17, 0.1);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  height: 100%;
-  overflow-y: scroll;
-}
-
-.card {
-  background-color: #fff;
-  /* box-shadow: 0px 0px 22px 3px rgba(0, 0, 0, 0.36); */
-  box-shadow: 0 4px 9px 0 rgba(15, 15, 17, 0.1);
-  margin-bottom: 30px;
-  margin-top: 30px;
-  margin-left: 15px;
-  margin-right: 15px;
-  padding: 0;
-  height: 324px;
-  min-height: 324px;
-  max-height: 324px;
-  width: 216px;
-  min-width: 216px;
-  max-width: 216px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 10px;
-}
-
-.gold-card {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    149deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(242, 207, 96, 1) 29%,
-    rgba(239, 195, 58, 1) 65%,
-    rgba(237, 186, 28, 1) 100%
-  );
-}
-
-.silver-card {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    149deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(204, 204, 204, 1) 37%,
-    rgba(164, 164, 164, 1) 78%,
-    rgba(112, 112, 112, 1) 100%
-  );
-}
-
-.bronze-card {
-  background: rgb(205, 127, 50);
-  background: linear-gradient(
-    347deg,
-    rgba(205, 127, 50, 1) 0%,
-    rgba(217, 149, 82, 1) 43%,
-    rgba(217, 171, 125, 1) 56%,
-    rgba(255, 255, 255, 1) 100%
-  );
-}
-
-.card-data {
-  box-sizing: border-box;
-  height: 35%;
-  width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.card-desc .player-desc {
-  box-sizing: border-box;
-  margin: 0;
-  text-align: center;
-}
-
-.player-club {
-  margin: 0;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.chart-container {
-  box-sizing: border-box;
-  height: 65%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.card-title {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

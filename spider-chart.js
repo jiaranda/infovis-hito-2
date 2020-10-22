@@ -20,6 +20,7 @@ const positionColors = {
   defense: "#6e7eff",
   mid: "#6eff84",
   front: "#ff4747",
+  summary: "rgba(167, 1, 255, 1)",
 };
 
 const prepareData = (data) => {
@@ -166,6 +167,7 @@ const getPositionColor = (position) => {
     return positionColors.defense;
   if (["CM", "CAM", "CDM", "LM", "RM"].includes(position))
     return positionColors.mid;
+  if (position === "SUMMARY") return positionColors.summary;
 
   return positionColors.front;
 };
@@ -179,6 +181,7 @@ const getRatingColor = (rating) => {
 const createSpiderChart = async (params) => {
   // get all params
   const { baseElement, data } = params;
+  console.log(data);
   const preparedData = prepareData(data);
   const scale = d3.scaleLinear().domain([0, 100]).range([0, sideLength]);
   const positionColor = getPositionColor(data.POSITION);
