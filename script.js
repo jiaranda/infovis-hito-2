@@ -33,6 +33,33 @@ const calculateMeans = async ({ data }) => {
   return res;
 };
 
+const showMeans = async ({ means, baseElement }) => {
+  baseElement
+    .select("#def-mean")
+    .select(".mean-value")
+    .text(parseInt(means.DEFENDING));
+  baseElement
+    .select("#pac-mean")
+    .select(".mean-value")
+    .text(parseInt(means.PACE));
+  baseElement
+    .select("#phy-mean")
+    .select(".mean-value")
+    .text(parseInt(means.PHYSICAL));
+  baseElement
+    .select("#sho-mean")
+    .select(".mean-value")
+    .text(parseInt(means.SHOOTING));
+  baseElement
+    .select("#pas-mean")
+    .select(".mean-value")
+    .text(parseInt(means.PASSING));
+  baseElement
+    .select("#dri-mean")
+    .select(".mean-value")
+    .text(parseInt(means.DRIBBLING));
+};
+
 const getSummary = async ({ data }) => {
   const baseElement = d3.select("#summary-chart");
   const means = await calculateMeans({ data });
@@ -40,6 +67,8 @@ const getSummary = async ({ data }) => {
     data: means,
     baseElement,
   });
+  const summaryData = d3.select("#summary-data");
+  await showMeans({ means, baseElement: summaryData });
 };
 
 const main = async () => {

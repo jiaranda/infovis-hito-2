@@ -21,6 +21,9 @@
   box-shadow: 0 4px 9px 0 rgba(15, 15, 17, 0.1);
   grid-area: data;
   margin-right: 15px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 33% 33% 33%;
 }
 
 #summary-chart {
@@ -32,4 +35,11 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+}
+
+.mean {
+  text-align: center;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
 }
