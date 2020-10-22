@@ -33,7 +33,7 @@ body {
 
 #title-container {
   text-align: center;
-  width: 5%;
+  width: 8%;
   height: inherit;
   background: var(--main-background-base);
   background: var(--main-background-gradient);
@@ -45,7 +45,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
   padding: 0px;
-  width: 95%;
+  width: 100%;
   box-shadow: black;
   background-color: #f5f5f5;
   margin-top: 40px;
@@ -164,49 +164,6 @@ body {
   width: 100%;
 }
 
-.subcontent .title {
-  text-align: center;
-}
-
-.subtitle {
-  margin-top: 60px;
-  color: #635f70;
-}
-
-.subsubtitle {
-  margin-top: 30px;
-  margin-left: 0;
-  padding-left: 10px;
-  color: #635f70;
-}
-
-.highlight {
-  color: #6b30ca;
-  margin-left: 10px;
-}
-
-.subcontent > p {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.my-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.my-list > li {
-  text-align: center;
-  background-color: #ebe1ee;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.card-list {
-  list-style-type: none;
-  padding: 10px;
-}
-
 #left-bar {
   background-color: #f5f5f5;
   width: 100%;
@@ -215,32 +172,6 @@ body {
 #right-bar {
   background-color: #f5f5f5;
   width: 100%;
-}
-
-@media only screen and (max-width: 600px) {
-  #content-container {
-    grid-template-columns: 1fr 15fr 1fr;
-    margin-top: 40px;
-  }
-
-  #title-container {
-    height: 100%;
-    position: inherit;
-  }
-
-  /* #left-bar, #right-bar {
-        visibility: hidden;
-    } */
-}
-
-#footer {
-  grid-area: footer;
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  background: var(--main-background-base);
-  background: var(--main-background-gradient);
-  color: #fff;
 }
 
 #github-link {
